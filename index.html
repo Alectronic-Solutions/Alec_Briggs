@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alec Briggs - IT Support Specialist</title>
+    <!-- Use the Inter font from Google Fonts for a clean, professional look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN for easy styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for a cohesive dark theme */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d1226;
+            color: #f8fafc;
+        }
+        
+        .section-title {
+            font-size: 2.75rem;
+            font-weight: 800;
+            color: #facc15; /* Changed to a bright gold */
+            letter-spacing: -0.025em;
+        }
+        
+        /* Updated nav link hover color to gold */
+        .nav-link:hover {
+            color: #facc15;
+        }
+        
+        .card {
+            background-color: #1a2240;
+            border: 1px solid #334155;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .input-field {
+            @apply w-full p-4 border-2 border-gray-600 bg-gray-900 rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all duration-300;
+            /* Prevents the text area from being resized by the user */
+            resize: none;
+        }
+
+        .btn-primary {
+            @apply inline-block px-8 py-4 bg-blue-600 text-white font-semibold rounded-full shadow-lg transition-all duration-300 transform hover:-translate-y-1 hover:scale-[1.05] hover:shadow-xl;
+        }
+
+        .btn-secondary {
+            @apply inline-block px-8 py-4 bg-gray-700 text-gray-200 font-semibold rounded-full shadow-lg transition-all duration-300 transform hover:-translate-y-1 hover:scale-[1.05] hover:shadow-xl;
+        }
+        
+        .skills-card {
+            @apply p-6 card rounded-2xl transition-transform duration-300 ease-in-out hover:scale-[1.02] hover:shadow-2xl hover:shadow-gray-700;
+        }
+        
+        /* New animations for sections */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        /* Hero section radial gradient */
+        .hero-bg-gradient {
+            background: radial-gradient(circle at center, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+        }
+
+        /* Timeline styles */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 10px;
+            width: 2px;
+            height: 100%;
+            background: #2a3350;
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-left: 2rem;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 6px;
+            left: 0;
+            width: 14px;
+            height: 14px;
+            background: #facc15;
+            border-radius: 50%;
+            border: 2px solid #1a2240;
+            z-index: 10;
+        }
+
+        #back-to-top-btn {
+            @apply fixed bottom-8 right-8 bg-gray-700 text-white p-3 rounded-full shadow-lg transition-all duration-300 transform hover:-translate-y-1 hover:scale-110;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 100;
+        }
+
+        #back-to-top-btn.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Styles to hide the nav bar when scrolling down */
+        .nav-hidden {
+            transform: translateY(-100%);
+        }
+    </style>
+</head>
+
+<body class="bg-slate-900 text-white">
+
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 card rounded-b-xl py-4 px-6 md:px-12 transition-transform duration-300 ease-out">
+        <div class="container mx-auto flex justify-between items-center">
+            <!-- Name is now gold and hovers with a darker shade -->
+            <a href="#hero" class="text-2xl font-bold text-[#facc15] transition-colors duration-300 hover:text-yellow-600">Alec Briggs</a>
+            <ul class="flex space-x-4 sm:space-x-8 text-sm sm:text-base">
+                <li><a href="#about" class="nav-link font-medium text-white transition-colors duration-300">About</a></li>
+                <li><a href="#skills" class="nav-link font-medium text-white transition-colors duration-300">Skills</a></li>
+                <li><a href="#experience" class="nav-link font-medium text-white transition-colors duration-300">Experience</a></li>
+                <li><a href="#education" class="nav-link font-medium text-white transition-colors duration-300">Education</a></li>
+                <li><a href="#contact" class="nav-link font-medium text-white transition-colors duration-300">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container mx-auto p-4 md:p-8 space-y-28">
+
+        <!-- Hero Section -->
+        <header id="hero" class="flex flex-col items-center text-center py-24 px-6 card rounded-3xl animate-on-scroll relative overflow-hidden">
+            <!-- Subtle background gradient -->
+            <div class="absolute inset-0 hero-bg-gradient"></div>
+            <div class="relative z-10">
+                <h1 class="text-5xl sm:text-6xl font-extrabold text-white mb-4 tracking-tight">Hi, I'm <span class="text-[#facc15]">Alec Briggs</span></h1>
+                <p class="text-xl sm:text-2xl text-blue-400 font-semibold mb-6">IT Support & Customer Success Specialist.</p>
+                <p class="max-w-prose mx-auto text-gray-200 leading-relaxed text-lg mb-10">
+                    A Certified IT Support Specialist with 5+ years of experience dedicated to transforming complex technical problems into simple, effective solutions. My approach combines deep technical troubleshooting with a focus on process improvement, ensuring that I not only fix immediate issues but also empower users and prevent future ones.
+                </p>
+                <div class="mt-8 flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="#experience" class="btn-primary">See My Experience</a>
+                    <a href="#contact" class="btn-secondary">Get In Touch</a>
+                </div>
+            </div>
+        </header>
+
+        <!-- About Me Section -->
+        <section id="about" class="p-8 card rounded-3xl opacity-0 animate-on-scroll">
+            <h2 class="section-title text-center mb-10">About Me</h2>
+            <div class="text-gray-200 leading-relaxed text-center space-y-4">
+                <p>My expertise lies in diagnosing and resolving intricate technical cases, proven by my success in reducing ticket escalations by 30% and maintaining a 95%+ user satisfaction rate in high-volume help desk environments. I excel at creating order from chaos, whether it's by streamlining client onboarding workflows to cut down processing time by 15% or by analyzing data to reduce claim denials by 33%.</p>
+                <p>I believe the best support experience is built on a foundation of clear communication, technical curiosity, and a relentless drive to make things work better. I thrive on creating and refining processes, developing documentation, and collaborating with cross-functional teams to build a seamless and supportive user journey.</p>
+                <p>I am currently seeking a full-time role in IT Support, Help Desk, or Technical Onboarding Operations where I can apply my skills in troubleshooting and process improvement to contribute to a collaborative, forward-thinking team. Let's connect to discuss how I can bring value to your organization.</p>
+                <div class="flex flex-col sm:flex-row justify-center mt-6 space-y-4 sm:space-y-0 sm:space-x-8">
+                    <a href="https://linkedin.com/in/alecbriggs" target="_blank" class="text-blue-400 hover:text-[#facc15] font-semibold transition-colors duration-300">LinkedIn Profile</a>
+                    <a href="mailto:AlecIT.B101@gmail.com" class="text-blue-400 hover:text-[#facc15] font-semibold transition-colors duration-300">AlecIT.B101@gmail.com</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="p-8 card rounded-3xl opacity-0 animate-on-scroll">
+            <h2 class="section-title text-center mb-6">Skills & Certifications</h2>
+            <p class="text-center text-gray-200 mb-10 max-w-2xl mx-auto">My technical expertise is built on a foundation of industry-recognized certifications and practical experience with a wide range of systems and tools.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Technical Support -->
+                <div class="skills-card">
+                    <div class="flex items-center mb-3">
+                        <svg class="w-8 h-8 text-blue-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.857 2.153l-1.334 9.876a2 2 0 01-1.857 1.847H10a2 2 0 01-2-2v-3.334a2 2 0 011-1.732l1.666-.957l.006-.003L14 10zm-6 0v11l-2-2m-3-3l-2-2"></path></svg>
+                        <h3 class="text-xl font-bold text-white">Technical Support</h3>
+                    </div>
+                    <p class="text-sm text-gray-300 mb-4">Proven ability to transform complex problems into simple, effective solutions.</p>
+                    <ul class="list-none space-y-2 text-gray-200">
+                        <li>Level 1-3 Help Desk</li>
+                        <li>Troubleshooting</li>
+                        <li>Remote Support</li>
+                        <li>Ticketing & CRM (Salesforce)</li>
+                        <li>ITIL Framework</li>
+                    </ul>
+                </div>
+                <!-- Operations & Analysis -->
+                <div class="skills-card">
+                    <div class="flex items-center mb-3">
+                        <svg class="w-8 h-8 text-blue-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-.299 1.05-.299 1.476 0l2.674 1.26a1 1 0 001.35 0l2.674-1.26c.426-.299 1.05-.299 1.476 0l2.674 1.26a1 1 0 001.35 0l2.674-1.26c.426-.299 1.05-.299 1.476 0l2.674 1.26c.426-.299 1.05-.299 1.476 0l2.674 1.26c.426-.299 1.05-.299 1.476 0m-3.414 7.644l-2.674 1.26a1 1 0 00-1.35 0l-2.674 1.26c-.426-.299-1.05-.299-1.476 0l-2.674-1.26c-.426-.299-1.05-.299-1.476 0m-1.35-1.26l-2.674 1.26a1 1 0 00-1.35 0l-2.674 1.26c-.426-.299-1.05-.299-1.476 0"></path></svg>
+                        <h3 class="text-xl font-bold text-white">Operations & Analysis</h3>
+                    </div>
+                    <p class="text-sm text-gray-300 mb-4">I excel at creating and refining processes to boost efficiency and reliability.</p>
+                    <ul class="list-none space-y-2 text-gray-200">
+                        <li>Workflow Optimization</li>
+                        <li>Process Improvement</li>
+                        <li>Data Analysis</li>
+                        <li>Documentation</li>
+                        <li>Quality Assurance (QA)</li>
+                    </ul>
+                </div>
+                <!-- Systems & Infrastructure -->
+                <div class="skills-card">
+                    <div class="flex items-center mb-3">
+                        <svg class="w-8 h-8 text-blue-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 21h.01M16.5 7.5A.5.5 0 0117 8h.5a.5.5 0 01.5.5v3a.5.5 0 01-.5.5H17a.5.5 0 01-.5-.5V8a.5.5 0 01.5-.5zM12 12V3a.5.5 0 011 0v9M6 12V3a.5.5 0 011 0v9M18 12V3a.5.5 0 011 0v9M21 12V3a.5.5 0 011 0v9"></path></svg>
+                        <h3 class="text-xl font-bold text-white">Systems & Infrastructure</h3>
+                    </div>
+                    <p class="text-sm text-gray-300 mb-4">My hands-on expertise covers a range of essential IT environments and infrastructure.</p>
+                    <ul class="list-none space-y-2 text-gray-200">
+                        <li>Windows Server, macOS, Linux</li>
+                        <li>Active Directory</li>
+                        <li>Office 365 / Google Workspace</li>
+                        <li>Network Troubleshooting (TCP/IP, DNS, DHCP)</li>
+                        <li>Hardware & Software Troubleshooting</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="mt-16 text-center">
+                <h3 class="text-2xl font-bold text-white mb-6">Certifications</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Cert 1 -->
+                    <div class="skills-card text-center">
+                        <h4 class="text-lg font-bold text-white">CompTIA (A+, Network+, Security+)</h4>
+                    </div>
+                    <!-- Cert 2 -->
+                    <div class="skills-card text-center">
+                        <h4 class="text-lg font-bold text-white">ITIL® 4 Foundation</h4>
+                    </div>
+                    <!-- Cert 3 -->
+                    <div class="skills-card text-center">
+                        <h4 class="text-lg font-bold text-white">Google IT Support Professional</h4>
+                    </div>
+                    <!-- Cert 4 -->
+                    <div class="skills-card text-center">
+                        <h4 class="text-lg font-bold text-white">AWS & Azure Fundamentals</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="p-8 card rounded-3xl opacity-0 animate-on-scroll">
+            <h2 class="section-title text-center mb-10">Professional Experience</h2>
+            <!-- The timeline container will hold all job entries -->
+            <div class="timeline space-y-8">
+                <!-- Job 1: Amplify -->
+                <div class="timeline-item">
+                    <div class="flex flex-col sm:flex-row justify-between items-start">
+                        <div class="sm:w-1/4 mb-2 sm:mb-0 text-gray-200 text-sm font-medium">Feb 2024 - Present</div>
+                        <div class="sm:w-3/4">
+                            <div class="font-semibold text-lg text-white">Technical Onboarding Specialist</div>
+                            <div class="text-gray-300 font-normal mb-2">Amplify</div>
+                            <ul class="list-disc list-inside space-y-1 text-gray-200 text-sm">
+                                <li>Became a subject matter expert on a full suite of Ed-Tech products, providing clear and simple guidance on product functionality and technical setup.</li>
+                                <li>Worked collaboratively with product and engineering teams to track bugs and resolve complex technical issues for clients.</li>
+                                <li>Maintained detailed documentation to ensure the entire support team was up to date on the latest product changes.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Job 2: Virta Health -->
+                <div class="timeline-item">
+                    <div class="flex flex-col sm:flex-row justify-between items-start">
+                        <div class="sm:w-1/4 mb-2 sm:mb-0 text-gray-200 text-sm font-medium">Oct 2023 - Feb 2024</div>
+                        <div class="sm:w-3/4">
+                            <div class="font-semibold text-lg text-white">Revenue Specialist</div>
+                            <div class="text-gray-300 font-normal mb-2">Virta Health</div>
+                            <ul class="list-disc list-inside space-y-1 text-gray-200 text-sm">
+                                <li>Handled sensitive inquiries in a high-growth technology company, demonstrating strong organizational skills and attention to detail.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Job 3: DoorDash - Combined Bullet -->
+                <div class="timeline-item">
+                    <div class="flex flex-col sm:flex-row justify-between items-start">
+                        <div class="sm:w-1/4 mb-2 sm:mb-0 text-gray-200 text-sm font-medium">Feb 2023 - May 2023</div>
+                        <div class="sm:w-3/4">
+                            <div class="font-semibold text-lg text-white">Tier 3 Technical Support</div>
+                            <div class="text-gray-300 font-normal mb-2">DoorDash</div>
+                            <ul class="list-disc list-inside space-y-1 text-gray-200 text-sm">
+                                <li>Provided Tier 3 technical support for a high-volume queue, expertly troubleshooting and resolving complex software issues while consistently maintaining a **95% user satisfaction rating**.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Job 4: California EDD -->
+                <div class="timeline-item">
+                    <div class="flex flex-col sm:flex-row justify-between items-start">
+                        <div class="sm:w-1/4 mb-2 sm:mb-0 text-gray-200 text-sm font-medium">Jan 2022 - Feb 2023</div>
+                        <div class="sm:w-3/4">
+                            <div class="font-semibold text-lg text-white">Claims Analyst</div>
+                            <div class="text-gray-300 font-normal mb-2">California EDD</div>
+                            <ul class="list-disc list-inside space-y-1 text-gray-200 text-sm">
+                                <li>Managed a high volume of complex cases, demonstrating an ability to stay organized and not let details slip through the cracks.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="p-8 card rounded-3xl opacity-0 animate-on-scroll">
+            <h2 class="section-title text-center mb-10">Education</h2>
+            <div class="text-center text-gray-200 leading-relaxed space-y-4 max-w-2xl mx-auto">
+                <p>Earning my information technology degree has been a unique journey. As a busy, working professional, I knew traditional classroom-based programs wouldn't fit my lifestyle. That's why I pursued WGU's online program, which allowed me to learn at my own pace and supplement my studies with self-taught, hands-on experience. This combination of formal education and real-world skills is a major advantage in the job market.</p>
+            </div>
+            <div class="mt-8 flex justify-center">
+                <div class="skills-card text-center">
+                    <div class="flex items-center justify-center mb-3">
+                        <svg class="w-8 h-8 text-blue-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14v1m-2.4-5.2a.8.8 0 00-1.1-1.1l-2.6 2.6a.8.8 0 000 1.1l2.6 2.6a.8.8 0 001.1-1.1m6.9-3.2a.8.8 0 00-1.1-1.1l-2.6 2.6a.8.8 0 000 1.1l2.6 2.6a.8.8 0 001.1-1.1"></path></svg>
+                        <h3 class="text-xl font-bold text-white">Western Governors University</h3>
+                    </div>
+                    <ul class="list-none space-y-2 text-gray-200">
+                        <li>B.S. Information Technology</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="p-8 card rounded-3xl text-center opacity-0 animate-on-scroll">
+            <h2 class="section-title text-center mb-10">Get In Touch</h2>
+            <div class="flex flex-col h-full justify-center items-center text-center max-w-lg mx-auto">
+                <p class="text-gray-200 mb-8 max-w-prose text-lg">
+                    I'm currently open to new opportunities and collaborations. Whether you have a question or just want to say hi, feel free to reach out directly using the options below.
+                </p>
+                <div class="space-y-6">
+                    <!-- Email -->
+                    <a href="mailto:AlecIT.B101@gmail.com" class="flex flex-col items-center text-center space-y-2 group">
+                        <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-gray-800 rounded-full">
+                            <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-lg text-white">Email Address</h3>
+                            <p class="text-blue-400">AlecIT.B101@gmail.com</p>
+                        </div>
+                    </a>
+                    <!-- Phone -->
+                    <a href="tel:209-920-7285" class="flex flex-col items-center text-center space-y-2 group">
+                        <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-gray-800 rounded-full">
+                            <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.774a11.058 11.058 0 008.288 8.288l.774-1.548a1 1 0 011.06-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.182 18 4 14.818 4 11V7a1 1 0 011-1z"></path></svg>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-lg text-white">Phone Number</h3>
+                            <p class="text-blue-400">(209) 920-7285</p>
+                        </div>
+                    </a>
+                    <!-- LinkedIn -->
+                    <a href="https://linkedin.com/in/alecbriggs" target="_blank" class="flex flex-col items-center text-center space-y-2 group">
+                        <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-gray-800 rounded-full">
+                            <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.765s.784-1.765 1.75-1.765 1.75.79 1.75 1.765-.783 1.765-1.75 1.765zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-lg text-white">LinkedIn Profile</h3>
+                            <p class="text-blue-400">/in/alecbriggs</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="footer" class="text-center py-8 text-sm text-white">
+        <p>&copy; 2025 Alec Briggs. All Rights Reserved.</p>
+        <div class="mt-4 flex flex-col sm:flex-row justify-center space-y-2 sm:space-y-0 sm:space-x-8">
+            <!-- Links now have a gold text hover effect -->
+            <a href="https://www.linkedin.com/in/alecbriggs" target="_blank" class="text-blue-400 hover:text-[#facc15] font-semibold transition-colors duration-300">LinkedIn</a>
+            <span class="hidden sm:inline">|</span>
+            <a href="tel:209-920-7285" class="text-blue-400 hover:text-[#facc15] font-semibold transition-colors duration-300">(209) 920-7285</a>
+            <span class="hidden sm:inline">|</span>
+            <a href="mailto:AlecIT.B101@gmail.com" class="text-blue-400 hover:text-[#facc15] font-semibold transition-colors duration-300">AlecIT.B101@gmail.com</a>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#hero" id="back-to-top-btn" aria-label="Back to Top">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+    </a>
+
+    <script>
+        // IntersectionObserver for fade-in animations
+        document.addEventListener("DOMContentLoaded", function() {
+            const sections = document.querySelectorAll('.animate-on-scroll');
+            const nav = document.querySelector('nav');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.2
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                        entry.target.classList.remove('opacity-0');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            // Back to top button functionality
+            const backToTopBtn = document.getElementById('back-to-top-btn');
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    backToTopBtn.classList.add('show');
+                } else {
+                    backToTopBtn.classList.remove('show');
+                }
+            });
+
+            // Nav bar hide/show on scroll
+            let lastScrollY = window.scrollY;
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > lastScrollY) {
+                    // Scrolling down
+                    nav.classList.add('nav-hidden');
+                } else {
+                    // Scrolling up
+                    nav.classList.remove('nav-hidden');
+                }
+                lastScrollY = window.scrollY;
+            });
+        });
+    </script>
+
+</body>
+
+</html>
